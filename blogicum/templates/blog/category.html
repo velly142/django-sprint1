@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Публикации в категории - {{ slug }}{% endblock %}
+{% block content %}
+  <h1>Публикации в категории - {{ slug }}</h1>
+  {% for item in post %}
+    <hr>
+    <article>
+      <ul>
+        <li>
+          Место: {{ item.location }}             
+        </li>
+        <li>
+          Дата: {{ item.date }}
+        </li>
+        <li>
+          Категория: <a href="{% url 'blog:category_posts' item.category %}">{{ item.category }}</a>
+        </li>
+      </ul>         
+      <p>
+        {{ item.text }}
+      </p>          
+    </article>
+  {% empty %}
+    <p>В этой категории нет публикаций.</p>
+  {% endfor %}
+{% endblock %}  
