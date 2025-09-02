@@ -42,6 +42,7 @@ posts = [
                 укутывал их, чтобы не испортились от дождя.''',
     },
 ]
+posts_by_id = {post['id']: post for post in posts}
 
 
 def category_posts(request, category_slug):
@@ -56,7 +57,8 @@ def category_posts(request, category_slug):
 
 
 def post_detail(request, id):
-    return render(request, 'blog/detail.html', {'post': posts[id]})
+    post = posts_by_id.get(id)
+    return render(request, 'blog/detail.html', {'post': post})
 
 
 def index(request):
